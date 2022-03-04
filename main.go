@@ -8,12 +8,9 @@ import (
 )
 
 func init() {
-	log.SetReportCaller(false)
 	log.SetFormatter(&log.TextFormatter{
-		ForceColors:            true,
-		FullTimestamp:          true,
-		DisableLevelTruncation: true,
-		DisableTimestamp:       true,
+		ForceColors:      true,
+		DisableTimestamp: true,
 	})
 	log.SetOutput(os.Stdout)
 	log.SetLevel(log.InfoLevel)
@@ -31,16 +28,16 @@ func main() {
 	client.ListPublicRepositories()
 	client.ListPrivateRepositories()
 
-	log.Println("\nDone")
+	log.Println("Done")
 }
 
 // getEnv will return the token and org environment variables if they exist
 func getEnv() (string, string) {
-	token := os.Getenv("token")
-	org := os.Getenv("org")
+	token := os.Getenv("TOKEN")
+	org := os.Getenv("ORG")
 
 	if token == "" || org == "" {
-		log.Fatal("Missing required environment variable: (token or org)")
+		log.Fatal("Missing required environment variable: (TOKEN/ORG)")
 	}
 	return token, org
 }
